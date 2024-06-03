@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class Message implements Serializable {
+public class Mensaje implements Serializable {
 
     private String texto;
 
