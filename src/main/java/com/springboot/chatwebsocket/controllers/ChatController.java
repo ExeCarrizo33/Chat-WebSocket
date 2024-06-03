@@ -10,11 +10,19 @@ import java.util.Date;
 @Controller
 public class ChatController {
 
+    private String[] colores = {"red", "green", "blue", "yellow", "orange", "magenta", "cyan"};
+
+
     @MessageMapping("/mensaje")
     @SendTo("/chat/mensaje")
     public Mensaje receiveMessage(Mensaje mensaje) {
         mensaje.setFecha(new Date().getTime());
-        mensaje.setTexto("Recibido por el Broker: " + mensaje.getTexto());
+
+        if (mensaje.getTipo().equals("NUEVO_USUARIO")){
+            mensaje.setColor(colores[(int) (Math.random() * colores.length)]);
+            mensaje.setTexto("Nuevo usuario");
+
+        }
         return mensaje;
     }
 }
